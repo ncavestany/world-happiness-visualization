@@ -62,10 +62,10 @@ Promise.all([
     const thresholdScale = d3
         .scaleThreshold(d3.interpolateBlues)
         .domain([
-            2000, 4000, 6000, 8000
+            4000, 5000, 6000, 7000
         ])
         .range(
-            d3.range(4).map(function (i) {
+            d3.range(5).map(function (i) {
                 return d3.interpolateBlues(i / 4);
             }),
         );
