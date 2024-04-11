@@ -5,142 +5,67 @@
 	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
 -->
 <html>
-	<head>
-		<title>Exploring World Happiness</title>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-		<link rel="stylesheet" href="assets/css/main.css" />
-		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
-	</head>
-	<body class="homepage is-preload">
-		<div id="page-wrapper">
 
-			<!-- Header -->
-				<div id="header">
+<head>
+	<title>Exploring World Happiness</title>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+	<link rel="stylesheet" href="assets/css/main.css" />
+	<noscript>
+		<link rel="stylesheet" href="assets/css/noscript.css" />
+	</noscript>
+</head>
 
-					<!-- Inner -->
-						<div class="inner">
-							<header>
-								<h1>Exploring World Happiness: <br><span style="font-size: smaller;"> Factors, Trends, and History</span></a></h1>
-								<hr />
-								<p>CS360 Final Project <br> Noah Cavestany</p>
-							</header>
-							<footer>
-								<a href="#banner" class="button circled scrolly">Start</a>
-							</footer>
-						</div>
+<body class="homepage is-preload">
+	<script src="https://d3js.org/d3.v7.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/d3-legend/2.25.6/d3-legend.min.js"></script>
+	<script src="https://d3js.org/topojson.v2.min.js"></script>
+	<div id="page-wrapper">
 
-					<!-- Nav -->
-						<!-- <nav id="nav">
-							<ul>
-								<li><a href="index.html">Home</a></li>
-								<li><a href="no-sidebar.html">No Sidebar</a></li>
-							</ul>
-						</nav> -->
+		<!-- Header -->
+		<div id="header">
 
-				</div>
+			<!-- Inner -->
+			<div class="inner">
+				<header>
+					<h1>Exploring World Happiness: <br><span style="font-size: smaller;"> Factors, Trends, and
+							History</span></a></h1>
+					<hr />
+					<p>CS360 Final Project <br> Noah Cavestany</p>
+				</header>
+				<footer>
+					<a href="#banner" class="button circled scrolly">Start</a>
+				</footer>
+			</div>
 
-			<!-- About -->
-				<section id="banner">
-					<header>
-						<h2><strong>About</strong></h2>
-						<p>
-							The World Happiness report is a yearly publication that records the "happiness scores" per country <br> as well as information like GDP, social support, and life expectancy.
-							This project aims to show <br> how countries have changed in happiness, the happiest and least happy regions over time,
-							<br> and the factors that affect a country's happiness score.
-						</p>
-					</header>
-				</section>
+		</div>
 
-			<!-- Carousel -->
-				<!-- <section class="carousel">
-					<div class="reel">
+		<!-- About -->
+		<section id="banner">
+			<header>
+				<h2><strong>About</strong></h2>
+				<p>
+					The World Happiness report is a yearly publication that records the "happiness scores" per country
+					<br> as well as information like GDP, social support, and life expectancy.
+					This project aims to show <br> how countries have changed in happiness, the happiest and least happy
+					regions over time,
+					<br> and the factors that affect a country's happiness score.
+				</p>
+			</header>
+		</section>
 
-						<article>
-							<a href="#" class="image featured"><img src="images/pic01.jpg" alt="" /></a>
-							<header>
-								<h3><a href="#">Pulvinar sagittis congue</a></h3>
-							</header>
-							<p>Commodo id natoque malesuada sollicitudin elit suscipit magna.</p>
-						</article>
+		<div id="choropleth">
+			<header style="text-align: center; margin-top: 50px;">
+				<h2><strong>World Happiness Rankings in 2022</strong></h2>
+			</header>
+			<p style="text-align: center;"> Hover over a country to see its score and ranking. <br> Countries not colored do not have recorded data.</p>
+			<script src="choropleth.js"></script>
+		</div>
 
-						<article>
-							<a href="#" class="image featured"><img src="images/pic02.jpg" alt="" /></a>
-							<header>
-								<h3><a href="#">Fermentum sagittis proin</a></h3>
-							</header>
-							<p>Commodo id natoque malesuada sollicitudin elit suscipit magna.</p>
-						</article>
 
-						<article>
-							<a href="#" class="image featured"><img src="images/pic03.jpg" alt="" /></a>
-							<header>
-								<h3><a href="#">Sed quis rhoncus placerat</a></h3>
-							</header>
-							<p>Commodo id natoque malesuada sollicitudin elit suscipit magna.</p>
-						</article>
 
-						<article>
-							<a href="#" class="image featured"><img src="images/pic04.jpg" alt="" /></a>
-							<header>
-								<h3><a href="#">Ultrices urna sit lobortis</a></h3>
-							</header>
-							<p>Commodo id natoque malesuada sollicitudin elit suscipit magna.</p>
-						</article>
-
-						<article>
-							<a href="#" class="image featured"><img src="images/pic05.jpg" alt="" /></a>
-							<header>
-								<h3><a href="#">Varius magnis sollicitudin</a></h3>
-							</header>
-							<p>Commodo id natoque malesuada sollicitudin elit suscipit magna.</p>
-						</article>
-
-						<article>
-							<a href="#" class="image featured"><img src="images/pic01.jpg" alt="" /></a>
-							<header>
-								<h3><a href="#">Pulvinar sagittis congue</a></h3>
-							</header>
-							<p>Commodo id natoque malesuada sollicitudin elit suscipit magna.</p>
-						</article>
-
-						<article>
-							<a href="#" class="image featured"><img src="images/pic02.jpg" alt="" /></a>
-							<header>
-								<h3><a href="#">Fermentum sagittis proin</a></h3>
-							</header>
-							<p>Commodo id natoque malesuada sollicitudin elit suscipit magna.</p>
-						</article>
-
-						<article>
-							<a href="#" class="image featured"><img src="images/pic03.jpg" alt="" /></a>
-							<header>
-								<h3><a href="#">Sed quis rhoncus placerat</a></h3>
-							</header>
-							<p>Commodo id natoque malesuada sollicitudin elit suscipit magna.</p>
-						</article>
-
-						<article>
-							<a href="#" class="image featured"><img src="images/pic04.jpg" alt="" /></a>
-							<header>
-								<h3><a href="#">Ultrices urna sit lobortis</a></h3>
-							</header>
-							<p>Commodo id natoque malesuada sollicitudin elit suscipit magna.</p>
-						</article>
-
-						<article>
-							<a href="#" class="image featured"><img src="images/pic05.jpg" alt="" /></a>
-							<header>
-								<h3><a href="#">Varius magnis sollicitudin</a></h3>
-							</header>
-							<p>Commodo id natoque malesuada sollicitudin elit suscipit magna.</p>
-						</article>
-
-					</div>
-				</section> -->
-
-			<!-- Main -->
-				<!-- <div class="wrapper style2">
+		<!-- Main -->
+		<!-- <div class="wrapper style2">
 
 					<article id="main" class="container special">
 						<a href="#" class="image featured"><img src="images/pic06.jpg" alt="" /></a>
@@ -168,8 +93,8 @@
 
 				</div> -->
 
-			<!-- Features -->
-				<!-- <div class="wrapper style1">
+		<!-- Features -->
+		<!-- <div class="wrapper style1">
 
 					<section id="features" class="container special">
 						<header>
@@ -212,13 +137,13 @@
 
 				</div> -->
 
-			<!-- Footer -->
-				<div id="footer">
-					<div class="container">
-						<!-- <div class="row"> -->
+		<!-- Footer -->
+		<div id="footer">
+			<div class="container">
+				<!-- <div class="row"> -->
 
-							<!-- Tweets -->
-								<!-- <section class="col-4 col-12-mobile">
+				<!-- Tweets -->
+				<!-- <section class="col-4 col-12-mobile">
 									<header>
 										<h2 class="icon brands fa-twitter circled"><span class="label">Tweets</span></h2>
 									</header>
@@ -251,7 +176,7 @@
 								</section>
 
 							<!-- Posts -->
-								<!-- <section class="col-4 col-12-mobile">
+				<!-- <section class="col-4 col-12-mobile">
 									<header>
 										<h2 class="icon solid fa-file circled"><span class="label">Posts</span></h2>
 									</header>
@@ -291,8 +216,8 @@
 									</ul>
 								</section> -->
 
-							<!-- Photos -->
-								<!-- <section class="col-4 col-12-mobile">
+				<!-- Photos -->
+				<!-- <section class="col-4 col-12-mobile">
 									<header>
 										<h2 class="icon solid fa-camera circled"><span class="label">Photos</span></h2>
 									</header>
@@ -318,50 +243,53 @@
 									</div>
 								</section> -->
 
-						</div>
-						<hr />
-						<div class="row">
-							<div class="col-12">
+			</div>
+			<hr />
+			<div class="row">
+				<div class="col-12">
 
-								<!-- Contact -->
-									<section class="contact">
-										<header>
-											<h3>Contact Info</h3>
-										</header>
-										<ul class="icons">
-											<li><a href="https://github.com/ncavestany " class="icon brands fa-github"><span
-												class="label">Github</span></a></li>
-									<li><a href="https://www.linkedin.com/in/noah-cavestany/" class="icon brands fa-linkedin""><span
-												class="label">Email</span></a></li>
-									<li><a href="mailto:nacavestany@gmail.com" class="icon solid fa-envelope"><span
-												class="label">Email</span></a></li>
-										</ul>
-									</section>
+					<!-- Contact -->
+					<section class="contact">
+						<header>
+							<h3>Contact Info</h3>
+						</header>
+						<ul class="icons">
+							<li><a href="https://github.com/ncavestany " class="icon brands fa-github"><span
+										class="label">Github</span></a></li>
+							<li><a href="https://www.linkedin.com/in/noah-cavestany/" class="icon brands fa-linkedin""><span
+												class=" label">Email</span></a></li>
+							<li><a href="mailto:nacavestany@gmail.com" class="icon solid fa-envelope"><span
+										class="label">Email</span></a></li>
+						</ul>
+					</section>
 
-								<!-- Copyright -->
-									<div class="copyright">
-										<ul class="menu">
-											<li>&copy; Untitled. All rights reserved.</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
-										</ul>
-									</div>
-
-							</div>
-
-						</div>
+					<!-- Copyright -->
+					<div class="copyright">
+						<ul class="menu">
+							<li>&copy; Untitled. All rights reserved.</li>
+							<li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+						</ul>
 					</div>
+
 				</div>
 
+			</div>
 		</div>
+	</div>
 
-		<!-- Scripts -->
-			<script src="assets/js/jquery.min.js"></script>
-			<script src="assets/js/jquery.dropotron.min.js"></script>
-			<script src="assets/js/jquery.scrolly.min.js"></script>
-			<script src="assets/js/jquery.scrollex.min.js"></script>
-			<script src="assets/js/browser.min.js"></script>
-			<script src="assets/js/breakpoints.min.js"></script>
-			<script src="assets/js/util.js"></script>
-			<script src="assets/js/main.js"></script>
+	</div>
 
-	</body>
+	<!-- Scripts -->
+	<script src="assets/js/jquery.min.js"></script>
+	<script src="assets/js/jquery.dropotron.min.js"></script>
+	<script src="assets/js/jquery.scrolly.min.js"></script>
+	<script src="assets/js/jquery.scrollex.min.js"></script>
+	<script src="assets/js/browser.min.js"></script>
+	<script src="assets/js/breakpoints.min.js"></script>
+	<script src="assets/js/util.js"></script>
+	<script src="assets/js/main.js"></script>
+
+
+</body>
+
 </html>
