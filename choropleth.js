@@ -9,7 +9,7 @@ const width =
     window.innerWidth - margin.left - margin.right;
 const height =
     window.innerHeight - margin.top - margin.bottom;
-
+const years = [2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023, 2024];
 // Create the SVG container for the chart
 const svg = d3
     .select('#choropleth')
@@ -33,36 +33,37 @@ const projection = d3
 
 Promise.all([
     d3.csv(
-        'https://gist.githubusercontent.com/ncavestany/a27d1c6706c2612a2d9a4c4b0b3c0456/raw/9633c5b7d807c4868f1c7675a082a2a2f4cff128/world_happiness_scores_2022.csv',
+        'data/2024.csv',
     ),
     d3.json(
         'https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json',
     ),
 ]).then(([csvData, mapData]) => {
+    var year;
     csvData.forEach((d) => {
         var countryName = d['Country'];
-        var happinessScore = +d['Happiness-score'].replace(
-            /,/g,
-            '',
-        ); // Take out commas from the score so that it can be processed as a number
-        var rank = d['RANK'];
+        var happinessScore = +d['Happiness Score'];
+        var rank = d['Happiness Rank'];
+        year = d['Year'];
         d.happinessScore = happinessScore;
         happiness.set(countryName, happinessScore);
         happinessRank.set(countryName, rank);
     });
 
+    var ranks = csvData.map(d => parseInt(d['Happiness Rank'], 10));
+
+    var lowestRank = d3.max(ranks);
+
     var colorScale = d3
         .scaleSequential(d3.interpolateBlues)
         .domain(
-            d3.extent(csvData, function (d) {
-                return d.happinessScore;
-            }),
+            [2000, 8000]
         );
 
     const thresholdScale = d3
         .scaleThreshold(d3.interpolateBlues)
         .domain([
-            4000, 5000, 6000, 7000
+            2000, 4000, 6000, 8000
         ])
         .range(
             d3.range(5).map(function (i) {
@@ -109,7 +110,90 @@ Promise.all([
             var happinessScore = happiness.get(countryName);
             var rank = happinessRank.get(countryName); // Assuming happinessRank is a Map containing country ranks
             return happinessScore !== undefined
-                ? 'Happiness score for ' + countryName + ' in 2022: ' + happinessScore + '\nRANK: ' + rank + ' of 146'
-                : 'No data recorded for ' + countryName;
+                ? 'Happiness score for ' + countryName + ' in ' + year + ': ' + + happinessScore + '\nRANK: ' + rank + ' of ' + lowestRank
+                : 'No data recorded for ' + countryName + ' in ' + year;
         });
+
+    // Dropdown menu for selecting the year
+    var dropdown = d3
+        .select('body')
+        .append('select')
+        .attr('class', 'year-dropdown')
+        .on('change', function () {
+            var selectedYear = d3.select(this).property('value');
+            updateChart(selectedYear);
+        });
+
+    dropdown
+        .selectAll('option')
+        .data(years)
+        .enter()
+        .append('option')
+        .text(d => d)
+        .attr('value', d => d)
+        .property('selected', function (d) {
+            return d === 2024; // Default year is 2024
+        });;
+
+    var dropdownPosition = { top: 1475, right: 260 };
+    dropdown.style('position', 'absolute')
+        .style('top', dropdownPosition.top + 'px')
+        .style('right', dropdownPosition.right + 'px');
+
+    // Function to update chart based on selected year
+    function updateChart(selectedYear) {
+        d3.csv('data/' + selectedYear + '.csv').then(newCsvData => {
+            svg.selectAll('.countries').remove(); // Remove existing countries
+
+            // Process new data
+            happiness.clear();
+            happinessRank.clear();
+            newCsvData.forEach(d => {
+                var countryName = d['Country'];
+                var happinessScore = +d['Happiness Score'];
+                var rank = d['Happiness Rank'];
+                d.happinessScore = happinessScore;
+                happiness.set(countryName, happinessScore);
+                happinessRank.set(countryName, rank);
+            });
+
+            // Redraw countries
+            svg
+                .append('g')
+                .attr('class', 'countries')
+                .selectAll('path')
+                .data(
+                    topojson.feature(mapData, mapData.objects.countries).features
+                )
+                .enter()
+                .append('path')
+                .attr('stroke', 'black')
+                .style('fill', function (d) {
+                    var countryName = d.properties.name;
+                    var happinessScore = happiness.get(countryName);
+                    return colorScale(happinessScore);
+                })
+                .attr('d', d3.geoPath().projection(projection))
+                .append('title')
+                .attr('class', 'tooltip')
+                .text(function (d) {
+                    var countryName = d.properties.name;
+                    var happinessScore = happiness.get(countryName);
+                    var rank = happinessRank.get(countryName);
+                    return happinessScore !== undefined
+                        ? 'Happiness score for ' +
+                        countryName +
+                        ' in ' +
+                        selectedYear +
+                        ': ' +
+                        happinessScore +
+                        '\nRANK: ' +
+                        rank +
+                        ' of ' + lowestRank
+                        : 'No data recorded for ' + countryName + ' in ' + selectedYear;
+                });
+        });
+    }
+
+
 });
