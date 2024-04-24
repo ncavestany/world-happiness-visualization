@@ -107,7 +107,7 @@ Promise.all([
         .text(function (d) {
             var countryName = d.properties.name;
             var happinessScore = happiness.get(countryName);
-            var rank = happinessRank.get(countryName); 
+            var rank = happinessRank.get(countryName);
             return happinessScore !== undefined
                 ? 'Happiness score for ' + countryName + ' in ' + year + ': ' + + happinessScore + '\nRANK: ' + rank + ' of ' + lowestRank
                 : 'No data recorded for ' + countryName + ' in ' + year;
@@ -155,6 +155,10 @@ Promise.all([
                 happiness.set(countryName, happinessScore);
                 happinessRank.set(countryName, rank);
             });
+
+            ranks = newCsvData.map(d => parseInt(d['Happiness Rank'], 10));
+
+            lowestRank = d3.max(ranks);
 
             // Redraw countries
             svg
