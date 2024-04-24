@@ -68,9 +68,9 @@ d3.csv(
     bumpSvg.select(".y2.axis")
         .attr("transform", "translate(" + 1050 + ",-10)")
         .selectAll("text")
-        .style("fill", d => colorScale(d)) // Apply color based on the color scale
-        .style("stroke", "black") // Slight black outline for readability
-        .style("stroke-width", 0.2) 
+        .style("fill", "black") 
+        .style("stroke", d => colorScale(d)) // Outline with matching color
+        .style("stroke-width", 0.3) 
 
 
     bumpSvg.selectAll('.line')
