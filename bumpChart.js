@@ -51,21 +51,27 @@ d3.csv(
         .domain(data.map((d) => d.Region))
         .range(['#a6cee3', '#1f78b4', '#b2df8a', '#33a02c', '#fb9a99', '#e31a1c', '#fdbf6f', '#ff7f00', '#cab2d6', '#6a3d9a']); // from colorbrewer
 
+
+    var y2 = d3.scaleBand()
+        .domain((data.map(d => d.Region)).reverse())
+        .range([height, 0])
+        .padding(-.6);
+
     bumpSvg
-        .append('g')
-        .attr('class', 'legendOrdinal')
-        .attr('transform', 'translate(1070,0)');
+        .append("g")
+        .attr("class", "y2 axis")
+        .style("font-size", "14px")
+        .call(d3.axisRight(y2).tickSizeOuter(0).tickSize(0))
+        .select(".domain")
+        .remove() // Removing the axis line to make it invisible
 
-    var legendOrdinal = d3
-        .legendColor()
-        .title("Region")
-        .labelWrap(200)
-        .shapeWidth(20)
-        .cells(10)
-        .orient('vertical')
-        .scale(colorScale);
+    bumpSvg.select(".y2.axis")
+        .attr("transform", "translate(" + 1050 + ",-10)")
+        .selectAll("text")
+        .style("fill", d => colorScale(d)) // Apply color based on the color scale
+        .style("stroke", "black") // Slight black outline for readability
+        .style("stroke-width", 0.2) 
 
-    bumpSvg.select('.legendOrdinal').call(legendOrdinal);
 
     bumpSvg.selectAll('.line')
         .data(sumstat)
@@ -99,10 +105,10 @@ d3.csv(
             return colorScale(d.Region);
         })
         .on('mouseenter', function () {
-            d3.select(this).attr('r', 10); 
+            d3.select(this).attr('r', 10);
         })
         .on('mouseleave', function () {
-            d3.select(this).attr('r', 5); 
+            d3.select(this).attr('r', 5);
         })
         .append('title')
         .text(
