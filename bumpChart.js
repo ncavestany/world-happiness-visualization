@@ -6,7 +6,7 @@ const bumpSvg = d3
     .append('g')
     .attr(
         'transform',
-        'translate(' + margin.left + ',' + margin.top + ')',
+        'translate(' + margin.left + ',' + 60 + ')',
     );
 
 // Load and process the data
@@ -17,7 +17,7 @@ d3.csv(
 
     const x = d3
         .scaleLinear()
-        .range([50, width - 200])
+        .range([50, width - 400])
         .domain(
             d3.extent(data, function (d) {
                 return d.Year;
@@ -38,13 +38,15 @@ d3.csv(
         .append('g')
         .attr('class', 'x axis')
         .style('font-size', '10px')
-        .attr('transform', 'translate(0,' + height + ')')
+        .attr('transform', 'translate(100,' + height + ')')
         .call(xAxis);
 
     bumpSvg
         .append("g")
-        .call(d3.axisLeft(y)
-            .tickSizeOuter(0));
+        .attr("class", "y axis")
+        .style("font-size", "10px")
+        .attr("transform", "translate(120, 0)") // Translate the y-axis
+        .call(d3.axisLeft(y).tickSizeOuter(0));
 
     var colorScale = d3
         .scaleOrdinal()
@@ -66,11 +68,11 @@ d3.csv(
         .remove() // Removing the axis line to make it invisible
 
     bumpSvg.select(".y2.axis")
-        .attr("transform", "translate(" + 1050 + ",-10)")
+        .attr("transform", "translate(" + 970 + ",-10)")
         .selectAll("text")
-        .style("fill", "black") 
+        .style("fill", "black")
         .style("stroke", d => colorScale(d)) // Outline with matching color
-        .style("stroke-width", 0.3) 
+        .style("stroke-width", 0.3)
 
 
     bumpSvg.selectAll('.line')
@@ -84,7 +86,7 @@ d3.csv(
             return d3
                 .line()
                 .x(function (d) {
-                    return x(d.Year);
+                    return x(d.Year) + 100;
                 })
                 .y(function (d) {
                     return y(d.Rank);
@@ -98,7 +100,7 @@ d3.csv(
         .enter()
         .append('circle')
         .attr('class', 'dot')
-        .attr('cx', (d) => x(d.Year))
+        .attr('cx', (d) => x(d.Year) + 100)
         .attr('cy', (d) => y(d.Rank))
         .attr('r', 5)
         .style('fill', function (d) {
@@ -121,7 +123,7 @@ d3.csv(
     bumpSvg
         .append("text")
         .attr("transform", "rotate(-90)")
-        .attr("y", -margin.left + 40)
+        .attr("y", -margin.left + 150)
         .attr("x", 0 - (height / 2))
         .attr("dy", "1em")
         .style("text-anchor", "middle")
@@ -134,9 +136,5 @@ d3.csv(
         .attr('x', width / 2 - 50)
         .attr('y', height + 40)
         .text('Year');
-
-
-
-
 
 });

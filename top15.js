@@ -3,7 +3,7 @@ const top15svg = d3
     .select('#top15')
     .append('svg')
     .attr('width', 1400)
-    .attr('height', height + margin.top + margin.bottom)
+    .attr('height', height + margin.top + margin.bottom - 100)
     .append('g')
     .attr(
         'transform',
@@ -59,7 +59,7 @@ d3.csv(
     top15svg.append("text")
         .attr("class", "x-axis-title")
         .attr("text-anchor", "middle")
-        .attr("x", width / 2 - 75)
+        .attr("x", width / 2 - 120)
         .attr("y", height + 50)
         .text("Happiness Score");
 

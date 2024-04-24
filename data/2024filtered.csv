@@ -1,0 +1,10 @@
+Country,Happiness Score,Whisker-high,Whisker-low,Log GDP per capita,Social support,Healthy life expectancy,Freedom to make life choices,Generosity,Perceptions of corruption,Dystopia + residual,Year,Happiness Rank,Region
+Finland,7741,7815,7667,1844,1572,695,859,142,546,2082,2024,1,Western Europe
+Denmark,7583,7665,7500,1908,1520,699,823,204,548,1881,2024,2,Western Europe
+Iceland,7525,7618,7433,1881,1617,718,819,258,182,2050,2024,3,Western Europe
+Sweden,7344,7422,7267,1878,1501,724,838,221,524,1658,2024,4,Western Europe
+Israel,7341,7405,7277,1803,1513,740,641,153,193,2298,2024,5,Middle East and North Africa
+Netherlands,7319,7383,7256,1901,1462,706,725,247,372,1906,2024,6,Western Europe
+Norway,7302,7389,7215,1952,1517,704,835,224,484,1586,2024,7,Western Europe
+Luxembourg,7122,7213,7031,2141,1355,708,801,146,432,1540,2024,8,Western Europe
+Switzerland,7060,7147,6973,1970,1425,747,759,173,498,1488,2024,9,Western Europe
