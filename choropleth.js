@@ -97,7 +97,6 @@ Promise.all([
         .append('path')
         .attr('stroke', 'black')
         .style('fill', function (d) {
-            // Get the happiness score for the current country
             var countryName = d.properties.name;
             var happinessScore = happiness.get(countryName);
             return colorScale(happinessScore);
@@ -108,7 +107,7 @@ Promise.all([
         .text(function (d) {
             var countryName = d.properties.name;
             var happinessScore = happiness.get(countryName);
-            var rank = happinessRank.get(countryName); // Assuming happinessRank is a Map containing country ranks
+            var rank = happinessRank.get(countryName); 
             return happinessScore !== undefined
                 ? 'Happiness score for ' + countryName + ' in ' + year + ': ' + + happinessScore + '\nRANK: ' + rank + ' of ' + lowestRank
                 : 'No data recorded for ' + countryName + ' in ' + year;
