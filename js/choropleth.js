@@ -131,7 +131,7 @@ Promise.all([
             var happinessScore = happiness.get(countryName);
             var rank = happinessRank.get(countryName);
             return happinessScore !== undefined
-                ? 'Happiness score for ' + countryName + ' in ' + year + ': ' + + happinessScore + '\nRANK: ' + rank + ' of ' + lowestRank
+                ? 'Happiness score: '+ happinessScore + "\nCountry: " + countryName + '\nRANK: ' + rank + ' of ' + lowestRank
                 : 'No data recorded for ' + countryName + ' in ' + year;
         });
 
@@ -228,15 +228,7 @@ Promise.all([
                     var happinessScore = happiness.get(countryName);
                     var rank = happinessRank.get(countryName);
                     return happinessScore !== undefined
-                        ? 'Happiness score for ' +
-                        countryName +
-                        ' in ' +
-                        selectedYear +
-                        ': ' +
-                        happinessScore +
-                        '\nRANK: ' +
-                        rank +
-                        ' of ' + lowestRank
+                    ? 'Happiness score: '+ happinessScore + "\nCountry: " + countryName + '\nRANK: ' + rank + ' of ' + lowestRank
                         : 'No data recorded for ' + countryName + ' in ' + selectedYear;
                 });
         });

@@ -115,8 +115,8 @@ d3.csv(
         .append('title')
         .text(
             (d) =>
-                'Average happiness score in ' + d['Year'] + ' for ' + d['Region'] + ': ' +
-                d['Average Happiness Score'],
+                'Average happiness score: ' + d['Average Happiness Score'] + '\nRegion: ' + d['Region'] + '\nYear: ' +
+                d['Year'],
         );
 
 
