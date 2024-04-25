@@ -46,6 +46,16 @@ d3.csv(
         .attr("width", function (d) { return x(d.happinessScore); })
         .attr("height", y.bandwidth())
         .attr("fill", "#56a0ce")
+        .on('mouseover', function (event, d) {
+            d3.select(this)
+                .style('fill', function () {
+                    return d3.color(d3.select(this).style('fill')).brighter(0.5); // Make the color lighter
+                });
+        })
+        .on('mouseout', function (event, d) {
+            d3.select(this)
+                .style('fill', '#56a0ce'); // Bring back to original color
+        })
         .append('title')
         .attr('class', 'tooltip')
         .text((d) => 'Happiness score: ' + d['Happiness Score']);
@@ -124,7 +134,7 @@ d3.csv(
             });
 
             top15Data = data.slice(0, 15);
-            bottom15Data = data.slice(-15).reverse(); 
+            bottom15Data = data.slice(-15).reverse();
             var selectedData = (selectedOrder === 'Ascending') ? bottom15Data : top15Data;
 
             var x = d3.scaleLinear()
@@ -162,6 +172,16 @@ d3.csv(
                 .attr("width", function (d) { return x(d.happinessScore); })
                 .attr("height", y.bandwidth())
                 .attr("fill", "#56a0ce")
+                .on('mouseover', function (event, d) {
+                    d3.select(this)
+                        .style('fill', function () {
+                            return d3.color(d3.select(this).style('fill')).brighter(0.5); // Make the color lighter
+                        });
+                })
+                .on('mouseout', function (event, d) {
+                    d3.select(this)
+                        .style('fill', '#56a0ce'); // Bring back to original color
+                })
                 .select('title')
                 .text((d) => 'Happiness score: ' + d['Happiness Score']);
         });
