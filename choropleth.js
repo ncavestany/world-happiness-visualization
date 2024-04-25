@@ -95,7 +95,11 @@ Promise.all([
         )
         .enter()
         .append('path')
-        .attr('stroke', 'black')
+        .attr('stroke', function (d) {
+            var countryName = d.properties.name;
+            var happinessScore = happiness.get(countryName);
+            return happinessScore !== undefined ? 'black' : 'gray'; // If the country has no happiness score make its outline gray for visibility
+        })
         .style('fill', function (d) {
             var countryName = d.properties.name;
             var happinessScore = happiness.get(countryName);
@@ -182,7 +186,11 @@ Promise.all([
                 )
                 .enter()
                 .append('path')
-                .attr('stroke', 'black')
+                .attr('stroke', function (d) {
+                    var countryName = d.properties.name;
+                    var happinessScore = happiness.get(countryName);
+                    return happinessScore !== undefined ? 'black' : 'gray'; 
+                })
                 .style('fill', function (d) {
                     var countryName = d.properties.name;
                     var happinessScore = happiness.get(countryName);
