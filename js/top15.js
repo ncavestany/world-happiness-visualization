@@ -58,7 +58,7 @@ d3.csv(
         })
         .append('title')
         .attr('class', 'tooltip')
-        .text((d) => 'Happiness score: ' + d['Happiness Score']);
+        .text((d) => 'Happiness score: ' + d.happinessScore);
 
     top15svg.append("g")
         .attr("class", "y-axis")
@@ -170,20 +170,14 @@ d3.csv(
                 .attr("x", x(0))
                 .attr("y", function (d) { return y(d.country); })
                 .attr("width", function (d) { return x(d.happinessScore); })
-                .attr("height", y.bandwidth())
-                .attr("fill", "#56a0ce")
-                .on('mouseover', function (event, d) {
-                    d3.select(this)
-                        .style('fill', function () {
-                            return d3.color(d3.select(this).style('fill')).brighter(0.5); // Make the color lighter
-                        });
-                })
-                .on('mouseout', function (event, d) {
-                    d3.select(this)
-                        .style('fill', '#56a0ce'); // Bring back to original color
-                })
-                .select('title')
-                .text((d) => 'Happiness score: ' + d['Happiness Score']);
+                .attr("height", y.bandwidth());
+
+            top15svg.selectAll("rect") // Overwrite all old titles
+                .select("title")
+                .text((d) => 'Happiness score: ' + d.happinessScore)
+                .enter()
+                .append("title")
+                .text((d) => 'Happiness score: ' + d.happinessScore);
         });
     }
 
