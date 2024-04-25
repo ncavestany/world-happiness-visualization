@@ -107,9 +107,15 @@ Promise.all([
         })
         .attr('d', d3.geoPath().projection(projection))
         .on('mouseover', function (event, d) {
+            var countryName = d.properties.name;
+            var happinessScore = happiness.get(countryName);
             d3.select(this)
                 .style('fill', function () {
-                    return d3.color(d3.select(this).style('fill')).brighter(0.5); // Make the color lighter
+                    if (happinessScore !== undefined) {
+                        return d3.color(d3.select(this).style('fill')).brighter(0.5); // Make the color lighter
+                    } else {
+                        return '#5b5c5b'; // Make a lighter gray if the happiness score is undefined
+                    }
                 });
         })
         .on('mouseout', function (event, d) {
@@ -189,7 +195,7 @@ Promise.all([
                 .attr('stroke', function (d) {
                     var countryName = d.properties.name;
                     var happinessScore = happiness.get(countryName);
-                    return happinessScore !== undefined ? 'black' : 'gray'; 
+                    return happinessScore !== undefined ? 'black' : 'gray';
                 })
                 .style('fill', function (d) {
                     var countryName = d.properties.name;
@@ -198,9 +204,15 @@ Promise.all([
                 })
                 .attr('d', d3.geoPath().projection(projection))
                 .on('mouseover', function (event, d) {
+                    var countryName = d.properties.name;
+                    var happinessScore = happiness.get(countryName);
                     d3.select(this)
                         .style('fill', function () {
-                            return d3.color(d3.select(this).style('fill')).brighter(0.5); // Make the color lighter
+                            if (happinessScore !== undefined) {
+                                return d3.color(d3.select(this).style('fill')).brighter(0.5); // Make the color lighter
+                            } else {
+                                return '#5b5c5b'; // Make a lighter gray if the happiness score is undefined
+                            }
                         });
                 })
                 .on('mouseout', function (event, d) {
