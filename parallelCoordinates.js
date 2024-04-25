@@ -15,7 +15,7 @@ d3.csv(
     'data/2024filtered.csv',
 ).then((data) => {
     // Filtering out all unneeded data
-    dimensions = Object.keys(data[0]).filter(function (d) { return d != "Happiness Score" && d != "Country" && d != "Happiness Rank" && d != "Region" && d != "Year" && d != "Whisker-high" && d != "Whisker-low" });
+    dimensions = Object.keys(data[0]).filter(function (d) { return d != "Happiness Score" && d != "Country" && d != "Happiness Rank" && d != "Region" && d != "Year" && d != "Whisker-high" && d != "Whisker-low" && d != "Dystopia + residual"});
 
     const y = {}
     for (i in dimensions) {

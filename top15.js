@@ -85,7 +85,7 @@ d3.csv(
             return d === 2024; // Default year is 2024
         });;
 
-    var dropdownPosition = { top: 2300, right: 150 };
+    var dropdownPosition = { top: 2600, right: 150 };
     dropdown.style('position', 'absolute')
         .style('top', dropdownPosition.top + 'px')
         .style('right', dropdownPosition.right + 'px');

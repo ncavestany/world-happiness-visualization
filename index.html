@@ -53,6 +53,10 @@
 					<br> and the factors that affect a country's happiness score.
 				</p>
 			</header>
+			<p style="font-size: large; text-align: center;">
+				The report is compiled based on surveys conducted among citizens of various
+				countries, assessing subjective well-being and factors contributing to happiness. <br>A factor's score correlates to how much it contributes to a country's overall happiness score. <br>
+			</p>
 		</section>
 
 		<div id="choropleth">
@@ -63,16 +67,25 @@
 				score and ranking. <br> Countries not
 				colored do not have recorded data.</p>
 			<script src="choropleth.js"></script>
+			<p style="text-align: center;"> Generally, Western European countries remain the happiest countries across
+				the years. <br> North American countries are on the higher end of happiness scales, but have been
+				steadily decreasing since 2015. <br> Countries in South Asia and Africa consistently remain on the lower
+				end of the scale. </p>
 		</div>
 
 		<div id="top15" class="wrapper style1">
-			<header style="text-align: center; margin-bottom: 50x;" >
+			<header style="text-align: center; margin-bottom: 50x;">
 				<h2><strong>Top 15 Happiness Countries by Year</strong></h2>
 			</header>
 			<p style="text-align: center;"> Select a year in the dropdown menu to see happiness rankings for that year.
 				<br> Hover over a country's bar to see its score.
 			</p>
 			<script src="top15.js"></script>
+			<p style="text-align: center;"> Regardless of the year, European countries dominate the top 15.
+				Specifically, the Nordic countries (Denmark, Sweden, Finland, Iceland) <br> are consistently in the top
+				5 happiest every year. Comparing year by year, their happiness scores seem to increase steadily. <br>
+				Israel is an outlier in that it is the only Middle East country that is always in the top 15 happiest.
+			</p>
 		</div>
 
 		<div id="bumpChart">
@@ -81,6 +94,14 @@
 			</header>
 			<p style="text-align: center;"> Hover over a dot to see the average happiness score. </p>
 			<script src="bumpChart.js"></script>
+			<p style="text-align: center; margin-top: -50px;"> Despite the high percentage of European countries in the
+				top 15 by year, North America and Australia/New Zealand are consistently the most happy countries on
+				average.<br>
+				However, as expected from the previous charts, West European countries are not far behind in average
+				scores. <br>
+				The Middle East and African regions are also consistently at the bottom of the rankings. <br>
+				It's also worth noting that after a jump in 2019, Middle East and North Africa fell to the 3rd lowest
+				spot and stayed there. </p>
 		</div>
 
 
@@ -91,6 +112,16 @@
 			<p style="text-align: center; margin-top: 10px;"> Hover over a country name to focus that country. <br>
 				Click on a country name to remove/restore it. </p>
 			<script src="parallelCoordinates.js"></script>
+			<p style="text-align: center;"> Despite the variance in values, the patterns across different countries
+				remain relatively consistent. <br>
+				Most of the top countries highly value social support, life expectancy, and freedom to make choices. <br>
+				Countries with lower Log GDP per capita have higher perceptions of social support and subsequently
+				freedom to make life choices. <br>
+				Again, as an outlier, Israel's happiness score mostly comes from its perceptions of social support and
+				life expectancy, as freedom, generosity, and trust are markedly low. <br>
+				Luxembourg is another standout country as its GDP is the highest, but perceptions of social support and
+				generosity are among the lowest this year.
+			</p>
 		</div>
 
 

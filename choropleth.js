@@ -134,7 +134,7 @@ Promise.all([
             return d === 2024; // Default year is 2024
         });;
 
-    var dropdownPosition = { top: 1475, right: 260 };
+    var dropdownPosition = { top: 1550, right: 260 };
     dropdown.style('position', 'absolute')
         .style('top', dropdownPosition.top + 'px')
         .style('right', dropdownPosition.right + 'px');
