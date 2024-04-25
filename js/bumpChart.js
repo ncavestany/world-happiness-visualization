@@ -129,12 +129,4 @@ d3.csv(
         .style("text-anchor", "middle")
         .text("Rank");
 
-    bumpSvg
-        .append('text')
-        .attr('class', 'x-axis-title')
-        .attr('text-anchor', 'middle')
-        .attr('x', width / 2 - 50)
-        .attr('y', height + 40)
-        .text('Year');
-
 });
