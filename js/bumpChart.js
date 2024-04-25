@@ -67,8 +67,11 @@ d3.csv(
         .select(".domain")
         .remove() // Removing the axis line to make it invisible
 
+
+    var legendStart = width - 270;
+    console.log(width);
     bumpSvg.select(".y2.axis")
-        .attr("transform", "translate(" + 970 + ",-10)")
+        .attr("transform", "translate(" + legendStart + ",-10)")
         .selectAll("text")
         .style("fill", "black")
         .style("stroke", d => colorScale(d)) // Outline with matching color
