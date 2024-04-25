@@ -102,6 +102,18 @@ Promise.all([
             return colorScale(happinessScore);
         })
         .attr('d', d3.geoPath().projection(projection))
+        .on('mouseover', function (event, d) {
+            d3.select(this)
+                .style('fill', function () {
+                    return d3.color(d3.select(this).style('fill')).brighter(0.5); // Make the color lighter
+                });
+        })
+        .on('mouseout', function (event, d) {
+            var countryName = d.properties.name;
+            var happinessScore = happiness.get(countryName);
+            d3.select(this)
+                .style('fill', colorScale(happinessScore)); // Return to original color
+        })
         .append('title')
         .attr('class', 'tooltip')
         .text(function (d) {
@@ -177,6 +189,18 @@ Promise.all([
                     return colorScale(happinessScore);
                 })
                 .attr('d', d3.geoPath().projection(projection))
+                .on('mouseover', function (event, d) {
+                    d3.select(this)
+                        .style('fill', function () {
+                            return d3.color(d3.select(this).style('fill')).brighter(0.5); // Make the color lighter
+                        });
+                })
+                .on('mouseout', function (event, d) {
+                    var countryName = d.properties.name;
+                    var happinessScore = happiness.get(countryName);
+                    d3.select(this)
+                        .style('fill', colorScale(happinessScore)); // Return to original color
+                })
                 .append('title')
                 .attr('class', 'tooltip')
                 .text(function (d) {
