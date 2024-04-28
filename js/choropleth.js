@@ -240,7 +240,7 @@ Promise.all([
     var zoom = d3.zoom()
         .scaleExtent([1, 8])
         .on('zoom', function (event) {
-            d3.selectAll('path')
+            svg.selectAll('path')
                 .attr('transform', event.transform);
         });
 
