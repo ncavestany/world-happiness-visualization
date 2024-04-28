@@ -69,7 +69,6 @@ d3.csv(
 
 
     var legendStart = width - 270;
-    console.log(width);
     bumpSvg.select(".y2.axis")
         .attr("transform", "translate(" + legendStart + ",-10)")
         .selectAll("text")

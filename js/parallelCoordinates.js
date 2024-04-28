@@ -15,7 +15,7 @@ d3.csv(
     'data/2024filtered.csv',
 ).then((data) => {
     // Filtering out all unneeded data
-    dimensions = Object.keys(data[0]).filter(function (d) { return d != "Happiness Score" && d != "Country" && d != "Happiness Rank" && d != "Region" && d != "Year" && d != "Whisker-high" && d != "Whisker-low" && d != "Dystopia + residual"});
+    dimensions = Object.keys(data[0]).filter(function (d) { return d != "Happiness Score" && d != "Country" && d != "Happiness Rank" && d != "Region" && d != "Year" && d != "Whisker-high" && d != "Whisker-low" && d != "Dystopia + residual" });
 
     const y = {}
     for (i in dimensions) {
@@ -111,8 +111,23 @@ d3.csv(
                     var visibility = d3.select(this).style("visibility");
                     if (visibility === "visible") {
                         d3.select(this).style("visibility", "hidden");
+                        // Make the country's color on the legend slightly transparent
+                        d3.select(".legendOrdinal")
+                            .selectAll(".cell")
+                            .filter(function (cell) {
+                                return cell === country;
+                            })
+                            .select("rect")
+                            .style("opacity", 0.3); 
                     } else {
                         d3.select(this).style("visibility", "visible");
+                        d3.select(".legendOrdinal")
+                            .selectAll(".cell")
+                            .filter(function (cell) {
+                                return cell === country;
+                            })
+                            .select("rect")
+                            .style("opacity", 1); // Restore full opacity
                     }
                 }
             });
