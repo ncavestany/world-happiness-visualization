@@ -1,9 +1,11 @@
+const top15height = 2500;
+
 // Create the SVG container for the chart
 const top15svg = d3
     .select('#top15')
     .append('svg')
     .attr('width', 1400)
-    .attr('height', height + margin.top + margin.bottom - 100)
+    .attr('height', top15height + 100)
     .append('g')
     .attr(
         'transform',
@@ -21,24 +23,22 @@ d3.csv(
         d.country = d['Country'];
     });
 
-    var top15Data = data.slice(0, 15);
-
     var x = d3.scaleLinear()
         .domain([0, 8000])
         .range([0, 1000]);
     top15svg.append("g")
-        .attr("transform", "translate(0," + height + ")")
+        .attr("transform", "translate(0," + top15height + ")")
         .call(d3.axisBottom(x))
         .selectAll("text")
 
     // Y axis
     var y = d3.scaleBand()
-        .range([0, height])
-        .domain(top15Data.map(function (d) { return d.Country; }))
+        .range([0, top15height])
+        .domain(data.map(function (d) { return d.Country; }))
         .padding(.40);
 
-    top15svg.selectAll("bar")
-        .data(top15Data)
+    top15svg.selectAll("rect")
+        .data(data)
         .enter()
         .append("rect")
         .attr("x", x(0))
@@ -69,7 +69,7 @@ d3.csv(
         .attr("class", "x-axis-title")
         .attr("text-anchor", "middle")
         .attr("x", width / 2 - 120)
-        .attr("y", height + 50)
+        .attr("y", top15height + 50)
         .text("Happiness Score");
 
     // Append dropdown menu
@@ -133,15 +133,14 @@ d3.csv(
                 d.country = d['Country'];
             });
 
-            top15Data = data.slice(0, 15);
-            bottom15Data = data.slice(-15).reverse();
-            var selectedData = (selectedOrder === 'Ascending') ? bottom15Data : top15Data;
+            var ascendingData = data.slice().reverse();
+            var selectedData = (selectedOrder === 'Ascending') ? ascendingData : data; // Pick the data based on selectedOrder
 
             var x = d3.scaleLinear()
                 .domain([0, 8000])
                 .range([0, 1000]);
             top15svg.append("g")
-                .attr("transform", "translate(0," + height + ")")
+                .attr("transform", "translate(0," + top15height + ")")
                 .call(d3.axisBottom(x))
                 .selectAll("text")
 
@@ -150,7 +149,7 @@ d3.csv(
 
             // Reinitialize new y-axis
             var y = d3.scaleBand()
-                .range([0, height])
+                .range([0, top15height])
                 .domain(selectedData.map(function (d) { return d.country; }))
                 .padding(.40);
 
@@ -159,24 +158,38 @@ d3.csv(
                 .call(d3.axisLeft(y))
                 .call(d3.axisLeft(y).tickSizeOuter(0));
 
+            top15svg.selectAll("rect").remove();
+
+
             // Fill in new bars
             top15svg.selectAll("rect")
                 .data(selectedData)
                 .enter()
                 .append("rect")
-                .merge(top15svg.selectAll("rect"))
-                .transition()
-                .duration(1000)
                 .attr("x", x(0))
                 .attr("y", function (d) { return y(d.country); })
-                .attr("width", function (d) { return x(d.happinessScore); })
-                .attr("height", y.bandwidth());
+                .attr("width", 0)
+                .attr("height", y.bandwidth())
+                .attr("fill", "#56a0ce")
+                .on('mouseover', function (event, d) {
+                    d3.select(this)
+                        .style('fill', function () {
+                            return d3.color(d3.select(this).style('fill')).brighter(0.5); // Make the color lighter
+                        });
+                })
+                .on('mouseout', function (event, d) {
+                    d3.select(this)
+                        .style('fill', '#56a0ce'); // Bring back to original color
+                })
+                .merge(top15svg.selectAll("rect"))
+                .transition()
+                .duration(750)
+                .attr("width", function (d) { return x(d.happinessScore); }); // Grow bars out
 
-            top15svg.selectAll("rect") // Overwrite all old titles
-                .select("title")
-                .text((d) => 'Happiness score: ' + d.happinessScore)
-                .enter()
-                .append("title")
+
+            top15svg.selectAll("rect")
+                .append('title')
+                .attr('class', 'tooltip')
                 .text((d) => 'Happiness score: ' + d.happinessScore);
         });
     }
