@@ -131,9 +131,11 @@ Promise.all([
             var happinessScore = happiness.get(countryName);
             var rank = happinessRank.get(countryName);
             return happinessScore !== undefined
-                ? 'Happiness score: '+ happinessScore + "\nCountry: " + countryName + '\nRANK: ' + rank + ' of ' + lowestRank
+                ? 'Happiness score: ' + happinessScore + "\nCountry: " + countryName + '\nRANK: ' + rank + ' of ' + lowestRank
                 : 'No data recorded for ' + countryName + ' in ' + year;
         });
+
+
 
     // Dropdown menu for selecting the year
     var dropdown = d3
@@ -228,11 +230,19 @@ Promise.all([
                     var happinessScore = happiness.get(countryName);
                     var rank = happinessRank.get(countryName);
                     return happinessScore !== undefined
-                    ? 'Happiness score: '+ happinessScore + "\nCountry: " + countryName + '\nRANK: ' + rank + ' of ' + lowestRank
+                        ? 'Happiness score: ' + happinessScore + "\nCountry: " + countryName + '\nRANK: ' + rank + ' of ' + lowestRank
                         : 'No data recorded for ' + countryName + ' in ' + selectedYear;
                 });
         });
     }
 
+    var zoom = d3.zoom()
+        .scaleExtent([1, 8])
+        .on('zoom', function (event) {
+            d3.selectAll('path')
+                .attr('transform', event.transform);
+        });
+
+    svg.call(zoom);
 
 });
