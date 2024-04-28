@@ -243,6 +243,14 @@ Promise.all([
                 .attr('transform', event.transform);
         });
 
+    function resetZoom() {
+        svg.transition().duration(500).call(zoom.transform, d3.zoomIdentity);
+    }
+
+
     svg.call(zoom);
+
+    svg.on("dblclick.zoom", resetZoom);
+
 
 });
