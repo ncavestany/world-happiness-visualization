@@ -165,6 +165,7 @@ Promise.all([
 
     // Function to update chart based on selected year
     function updateChart(selectedYear) {
+        resetZoom();
         d3.csv('data/' + selectedYear + '.csv').then(newCsvData => {
             svg.selectAll('.countries').remove(); // Remove existing countries
 
@@ -244,7 +245,7 @@ Promise.all([
         });
 
     function resetZoom() {
-        svg.transition().duration(500).call(zoom.transform, d3.zoomIdentity);
+        svg.transition().duration(750).call(zoom.transform, d3.zoomIdentity);
     }
 
 
