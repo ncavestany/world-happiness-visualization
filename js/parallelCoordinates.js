@@ -10,7 +10,7 @@ const parallelSvg = d3
         'translate(' + 0 + ',' + 100 + ')',
     );
 
-var legendPosition = 1600;
+var legendPosition = window.innerWidth * 0.8;
 
 // Load and process the data
 d3.csv(
