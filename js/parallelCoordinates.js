@@ -11,6 +11,7 @@ const parallelSvg = d3
     );
 
 var legendPosition = 1600;
+console.log("test");
 
 // Load and process the data
 d3.csv(
