@@ -10,6 +10,8 @@ const parallelSvg = d3
         'translate(' + 0 + ',' + 100 + ')',
     );
 
+var legendPosition = 1600;
+
 // Load and process the data
 d3.csv(
     'data/2024filtered.csv',
@@ -50,7 +52,7 @@ d3.csv(
     parallelSvg
         .append('g')
         .attr('class', 'legendOrdinal')
-        .attr('transform', 'translate(1200,0)')
+        .attr('transform', 'translate(' + legendPosition + ',70)')
         .call(legendOrdinal)
         .selectAll("text")
         .on("mouseover", function () {
