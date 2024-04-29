@@ -24,8 +24,8 @@ const svg = d3
 
 var happiness = new Map();
 var happinessRank = new Map();
-var legendWidth = width * 0.8;
-var dropdownHeight = height * 2.6;
+var legendWidth = window.innerWidth * 0.7;
+var dropdownHeight = window.innerHeight * 2.1;
 const path = d3.geoPath();
 const projection = d3
     .geoMercator()
