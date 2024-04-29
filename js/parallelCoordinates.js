@@ -91,6 +91,13 @@ d3.csv(
     function highlight(country) {
         parallelSvg.selectAll("path")
             .style("stroke", function (d) {
+                d3.select(".legendOrdinal")
+                    .selectAll(".cell")
+                    .filter(function (cell) {
+                        return cell != country;
+                    })
+                    .select("rect")
+                    .style("opacity", 0.3);
                 return d.Country === country ? colorScale(d) : "lightgrey";
             });
     }
@@ -99,6 +106,10 @@ d3.csv(
     function unhighlight() {
         parallelSvg.selectAll("path")
             .style("stroke", function (d) {
+                d3.select(".legendOrdinal")
+                    .selectAll(".cell")
+                    .select("rect")
+                    .style("opacity", 1);
                 return colorScale(d.Country);
             });
     }
@@ -118,7 +129,7 @@ d3.csv(
                                 return cell === country;
                             })
                             .select("rect")
-                            .style("opacity", 0.3); 
+                            .style("opacity", 0.3);
                     } else {
                         d3.select(this).style("visibility", "visible");
                         d3.select(".legendOrdinal")
