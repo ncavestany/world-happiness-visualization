@@ -24,8 +24,18 @@ const svg = d3
 
 var happiness = new Map();
 var happinessRank = new Map();
-var legendWidth = width * 0.8;
-var dropdownHeight = height * 2.6;
+const smallScreenBreakpoint = 768; // Example: small screens up to 768px width
+const largeScreenBreakpoint = 1200; // Example: large screens above 1200px width
+
+let legendWidth;
+if (width <= smallScreenBreakpoint) { // Small screens
+    legendWidth = width * 0.85;
+} else if (width > smallScreenBreakpoint && width <= largeScreenBreakpoint) { // Medium screens
+    legendWidth = width * 0.9; 
+} else { // Large screens
+    legendWidth = width * 0.95;
+}
+var dropdownHeight = height * 3.4;
 const path = d3.geoPath();
 const projection = d3
     .geoMercator()
@@ -159,7 +169,6 @@ Promise.all([
             return d === 2024; // Default year is 2024
         });;
 
-    var dropdownPosition = { top: 1550, right: 260 };
     dropdown.style('position', 'absolute')
         .style('top', dropdownHeight + 'px')
         .style('left', legendWidth + 100 + 'px');
