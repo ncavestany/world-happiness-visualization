@@ -131,7 +131,7 @@ d3.csv(
                                 return cell === country;
                             })
                             .select("rect")
-                            .style("opacity", 0.3);
+                            .style("visibility", "hidden");
                     } else {
                         d3.select(this).style("visibility", "visible");
                         d3.select(".legendOrdinal")
@@ -140,7 +140,7 @@ d3.csv(
                                 return cell === country;
                             })
                             .select("rect")
-                            .style("opacity", 1); // Restore full opacity
+                            .style("visibility", "visible");; // Restore full opacity
                     }
                 }
             });
