@@ -24,6 +24,8 @@ const svg = d3
 
 var happiness = new Map();
 var happinessRank = new Map();
+var legendWidth = width - 400;
+var dropdownHeight = height + 1200;
 const path = d3.geoPath();
 const projection = d3
     .geoMercator()
@@ -70,11 +72,10 @@ Promise.all([
                 return d3.interpolateBlues(i / 4);
             }),
         );
-
     svg
         .append('g')
         .attr('class', 'legendSequential')
-        .attr('transform', 'translate(1050,20)');
+        .attr('transform', 'translate(' + legendWidth + ',70)');
 
     const legendSequential = d3
         .legendColor()
@@ -160,8 +161,8 @@ Promise.all([
 
     var dropdownPosition = { top: 1550, right: 260 };
     dropdown.style('position', 'absolute')
-        .style('top', dropdownPosition.top + 'px')
-        .style('right', dropdownPosition.right + 'px');
+        .style('top', dropdownHeight + 'px')
+        .style('left', legendWidth + 100 + 'px');
 
     // Function to update chart based on selected year
     function updateChart(selectedYear) {
