@@ -28,8 +28,8 @@ var legendWidth = window.innerWidth * 0.7;
 var dropdownHeight = window.innerHeight * 2.4;
 const path = d3.geoPath();
 const projection = d3
-    .geoMercator()
-    .scale(120)
+    .geoRobinson()
+    .scale(150)
     .center([0, 20])
     .translate([width / 2, height / 2]);
 
@@ -65,7 +65,7 @@ Promise.all([
     const thresholdScale = d3
         .scaleThreshold(d3.interpolateBlues)
         .domain([
-            2000, 4000, 6000, 8000
+            1875, 3750, 5625, 7500
         ])
         .range(
             d3.range(5).map(function (i) {
