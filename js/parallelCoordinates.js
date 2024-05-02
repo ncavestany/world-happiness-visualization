@@ -49,6 +49,7 @@ d3.csv(
         .cells(10)
         .orient('vertical')
         .scale(colorScale);
+
     parallelSvg
         .append('g')
         .attr('class', 'legendOrdinal')
@@ -73,6 +74,7 @@ d3.csv(
         .data(data)
         .join("path")
         .attr("d", path)
+        .attr("class", "data-path")
         .style("fill", "none")
         .attr("stroke", function (d) { return colorScale(d) })
         .style("opacity", 1)
@@ -82,38 +84,49 @@ d3.csv(
         .data(dimensions).enter()
         .append("g")
         .attr("transform", function (d) { return "translate(" + x(d) + ")"; })
-        .each(function (d) { d3.select(this).call(d3.axisLeft().scale(y[d])); })
+        .each(function (d) {
+            d3.select(this).call(d3.axisLeft().scale(y[d]));
+            d3.select(this).selectAll("text").style("font-size", "14px");
+        })
         .append("text")
         .style("text-anchor", "middle")
         .attr("y", -9)
         .text(function (d) { return d; })
         .style("fill", "black")
+        .style("font-size", "13px");
 
     // Make all other lines light grey other than the highlighted one
     function highlight(country) {
         parallelSvg.selectAll("path")
             .style("stroke", function (d) {
-                d3.select(".legendOrdinal")
-                    .selectAll(".cell")
-                    .filter(function (cell) {
-                        return cell != country;
-                    })
-                    .select("rect")
-                    .style("opacity", 0.3);
-                return d.Country === country ? colorScale(d) : "lightgrey";
+                if (d && d.Country && d.Country === country) { // Checking if d is null for strange bug
+                    return colorScale(d);
+                } else {
+                    return "lightgrey";
+                }
+            })
+            .style("stroke-width", function (d) {
+                if (d && d.Country) {
+                    return d.Country === country ? "5px" : "2.5px";
+                }
             });
     }
+
 
     // Restore colors after mouseoff
     function unhighlight() {
         parallelSvg.selectAll("path")
             .style("stroke", function (d) {
-                d3.select(".legendOrdinal")
-                    .selectAll(".cell")
-                    .select("rect")
-                    .style("opacity", 1);
-                return colorScale(d.Country);
+                if (d) {
+                    d3.select(".legendOrdinal")
+                        .selectAll(".cell")
+                        .select("rect")
+                        .style("opacity", 1);
+                    return colorScale(d.Country);
+                }
             });
+        parallelSvg.selectAll("path.data-path") 
+            .style("stroke-width", "2.5px")
     }
 
     // Click a country name to remove/restore it.
