@@ -53,7 +53,6 @@ d3.csv(
         .domain(data.map((d) => d.Region))
         .range(['#a6cee3', '#1f78b4', '#b2df8a', '#33a02c', '#fb9a99', '#e31a1c', '#fdbf6f', '#ff7f00', '#cab2d6', '#6a3d9a']); // from colorbrewer
 
-
     var y2 = d3.scaleBand()
         .domain((data.map(d => d.Region)).reverse())
         .range([height, 0])
@@ -67,7 +66,6 @@ d3.csv(
         .select(".domain")
         .remove() // Removing the axis line to make it invisible
 
-
     var legendStart = width - 270;
     bumpSvg.select(".y2.axis")
         .attr("transform", "translate(" + legendStart + ",-10)")
@@ -75,7 +73,6 @@ d3.csv(
         .style("fill", "black")
         .style("stroke", d => colorScale(d)) // Outline with matching color
         .style("stroke-width", 0.3)
-
 
     bumpSvg.selectAll('.line')
         .data(sumstat)
@@ -94,7 +91,6 @@ d3.csv(
                     return y(d.Rank);
                 })(d[1]);
         });
-
 
     bumpSvg
         .selectAll('.dot')
@@ -121,7 +117,6 @@ d3.csv(
                 d['Year'],
         );
 
-
     bumpSvg
         .append("text")
         .attr("transform", "rotate(-90)")
@@ -130,5 +125,33 @@ d3.csv(
         .attr("dy", "1em")
         .style("text-anchor", "middle")
         .text("Rank");
+
+    function highlight(selectedRegion) {
+        bumpSvg.selectAll('.line')
+            .attr("stroke", function (d) {
+                return d[0] === selectedRegion ? colorScale(d[0]) : "lightgrey";
+            });
+        bumpSvg.selectAll('.dot')
+            .style('fill', function (d) {
+                return d.Region === selectedRegion ? colorScale(d.Region) : 'lightgrey';
+            });
+    }
+
+    bumpSvg.selectAll(".y2.axis text")
+        .on("mouseover", function (event, d) {
+            var selectedRegion = d;
+            highlight(selectedRegion);
+        })
+        .on("mouseout", function () {
+            bumpSvg.selectAll('.line')
+                .attr("stroke", function (d) {
+                    return colorScale(d[0]);
+                });
+            bumpSvg.selectAll('.dot')
+                .style('fill', function (d) {
+                    return colorScale(d.Region);
+                });
+        });
+
 
 });
