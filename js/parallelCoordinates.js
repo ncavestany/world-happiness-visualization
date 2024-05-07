@@ -104,11 +104,23 @@ d3.csv(
                 } else {
                     return "lightgrey";
                 }
-            })
+            }
+            )
             .style("stroke-width", function (d) {
                 if (d && d.Country) {
                     return d.Country === country ? "5px" : "2.5px";
                 }
+            });
+        parallelSvg.selectAll("path") // Make other colors on the legend light grey
+            .style("stroke", function (d) {
+                d3.select(".legendOrdinal")
+                    .selectAll(".cell")
+                    .filter(function (cell) {
+                        return cell != country;
+                    })
+                    .select("rect")
+                    .style("opacity", 0.3);
+                return d.Country === country ? colorScale(d) : "lightgrey";
             });
     }
 
@@ -125,7 +137,7 @@ d3.csv(
                     return colorScale(d.Country);
                 }
             });
-        parallelSvg.selectAll("path.data-path") 
+        parallelSvg.selectAll("path.data-path")
             .style("stroke-width", "2.5px")
     }
 
