@@ -46,8 +46,9 @@
 		<section id="banner">
 			<header>
 				<h2><strong>About</strong></h2>
-				<p>
-					The <a href="https://worldhappiness.report/">World Happiness Report</a> by is a yearly publication
+				<p style="font-size: 24px;">
+					The <a href="https://worldhappiness.report/" style="color:#ef8276;">World Happiness Report</a> by is
+					a yearly publication
 					by Gallup, the Oxford Wellbeing Research Centre, <br> the UN Sustainable Development Solutions
 					Network, and the WHR’s Editorial Board that records the "happiness scores"<br> per country
 					from information like GDP, social support, and life expectancy.
@@ -56,7 +57,7 @@
 					<br> and the factors that affect a country's happiness score.
 				</p>
 			</header>
-			<p style="font-size: large; text-align: center;">
+			<p style="font-size: 20px; text-align: center;">
 				The report is compiled based on surveys conducted among citizens of various
 				countries, assessing subjective well-being and factors contributing to happiness. <br>A factor's score
 				correlates to how much it contributes to a country's overall happiness score. <br>
@@ -64,23 +65,24 @@
 		</section>
 
 		<div id="choropleth">
-			<header style="text-align: center; margin-top: 50px;">
-				<h2><strong>World Happiness Rankings by Year</strong></h2>
+			<header style="text-align: center; font-size: medium; margin-top: 50px;">
+				<h2><strong> Happiness Scores Stay Stable, Even Through the Pandemic </strong></h2>
 			</header>
 			<p style="text-align: center;"> Select a year using the dropdown menu. <br> Hover over a country to see its
 				score and ranking. <br> Countries not
 				colored do not have recorded data. <br>
-				Scroll on the map to zoom in; double-click to reset the zoom.</p>
+				Scroll on the map to zoom in; double-click to reset the zoom and position.</p>
 			<script src="js/choropleth.js"></script>
 			<p style="text-align: center;"> Generally, Western European countries remain the happiest countries across
 				the years. <br> North American countries are on the higher end of happiness scales, but have been
 				steadily decreasing since 2015. <br> Countries in South Asia and Africa consistently remain on the lower
-				end of the scale. </p>
+				end of the scale. <br> Even comparing the scores before and after the pandemic, the overall scores per region stay relatively stable. </p> <br>
+				
 		</div>
 
 		<div id="top15" class="wrapper style1">
-			<header style="text-align: center; margin-bottom: 50x;">
-				<h2><strong>Top and Bottom 15 Happiest Countries by Year</strong></h2>
+			<header style="text-align: center; font-size: medium;">
+				<h2><strong> Nordic Countries Remain the Happiest	</strong></h2> 
 			</header>
 			<p style="text-align: center;"> Select a year in the dropdown menu to see happiness rankings for that year.
 				<br>
@@ -98,8 +100,8 @@
 		</div>
 
 		<div id="bumpChart">
-			<header style="text-align: center; margin-bottom: 50x;">
-				<h2><strong> Average Happiness Rankings by Year </strong></h2>
+			<header style="text-align: center; font-size: small;">
+				<h2><strong> The Americas/ANZ and Europe Dominate the Yearly Rankings </strong></h2>
 			</header>
 			<p style="text-align: center;"> Hover over a dot to see the average happiness score. </p>
 			<script src="js/bumpChart.js"></script>
@@ -115,8 +117,8 @@
 
 
 		<div id="parallelCoordinates" class="wrapper style1">
-			<header style="text-align: center; margin-bottom: 50px;">
-				<h2><strong> Happiness Score Factors by Country (2024) </strong></h2>
+			<header style="text-align: center; font-size: small;">
+				<h2><strong> Social Support and Freedom are the Most Valued Factors </strong></h2>
 			</header>
 			<p style="text-align: center; margin-bottom: -20px;"> Hover over a country name to focus that country. <br>
 				Click on a country name to remove/restore it. </p>
@@ -133,6 +135,88 @@
 				generosity are among the lowest this year.
 			</p>
 		</div>
+
+		<section id="banner">
+			<header>
+				<h2><strong>Methodology</strong></h2>
+				<br>
+				<h3> Background and Motivation </h3>
+				<p style="font-size: 20px;">
+					I was personally very interested in which areas of the world are considered the happiest, and <br> I
+					felt that I and my audience (my peers) would benefit from
+					learning about different countries as we look to continue our lives and careers. <br>
+					I was also excited at the idea of being able to visualize a decade's worth of data and being able to
+					compare data from over such a long period of time.
+				</p>
+				<br>
+				<br>
+				<h3>Data Processing</h3>
+				<p style="font-size: 20px;">
+					As previously stated, my data is from the <a href="https://worldhappiness.report/">World Happiness
+						Report</a>, but the different datasets were compiled and downloaded from Kaggle (except for
+					2024). <br>
+					From 10 different datasets, there were lots of inconsistencies in things like header names, country
+					names, and number formatting, so I <br> created several simple Python scripts and Excel to clean the
+					data and manually changed
+					country names where necessary. <br>
+					Specifically, "Region" and "Rank" were not included in every set, so I had to add them myself. <br>
+					I then used the Region to calculate the average happiness score for every year so I could visualize
+					and rank them. <br>
+					<br>
+					Datasets: <br>
+					<a href="https://www.kaggle.com/datasets/mathurinache/world-happiness-report"
+						style="color:#ef8276;">World Happiness Report
+						up to 2022</a> <br>
+					<a href="https://www.kaggle.com/datasets/ajaypalsinghlo/world-happiness-report-2023"
+						style="color:#ef8276;">World Happiness
+						Report 2023</a> <br>
+				</p>
+				<br>
+				<br>
+				<h3>References</h3>
+				<p style="font-size: 20px;"></p>
+				Choropleth: <a href="https://www.youtube.com/watch?v=FsDyelH58F0" style="color:#ef8276;"> D3.js
+					Choropleth Map Code Walkthrough by Creating with Data</a>
+				and <a href="https://d3-graph-gallery.com/graph/choropleth_basic.html" style="color:#ef8276;">D3 Graph
+					Gallery - Basic Choropleth</a> <br>
+				Parallel Coordinates Plot: <a href="https://d3-graph-gallery.com/parallel.html" style="color:#ef8276;">
+					D3 Graph Gallery - Parallel Coordinates charts</a>
+				<br>
+				<br>
+				<br>
+				<h3>Related Work:</strong></h3>
+				<p style="font-size: 20px;">
+					Cotofan, Maria, et al. "Work and well-being during COVID-19: impact, inequalities, resilience, and
+					the <br>
+					future of work." World happiness report 2021 (2021): 153. <br> <br>
+
+					Deaton, Angus. "Income, health, and well-being around the world: Evidence from the Gallup World
+					Poll." <br>
+					Journal of Economic perspectives 22.2 (2008): 53-72. <br> <br>
+
+					Helliwell, John F., Haifang Huang, and Shun Wang. "The social foundations of world happiness." World
+					happiness report 8 (2017): 8-46. <br>
+					https://www.researchgate.net/publication/316452251_The_Social_Foundations_of_World_Happiness <br>
+					<br>
+
+					Helliwell, J. F., Huang, H., Norton, M., Goff, L., & Wang, S. (2023). World Happiness, Trust and
+					Social <br>
+					Connections in Times of Crisis. In World Happiness Report 2023 (11th ed., Chapter 2). Sustainable
+					<br>
+					Development Solutions Network. <br> <br>
+
+					Jaswal, Vidushi, et al. "Understanding the determinants of happiness through Gallup World Poll."
+					Journal <br>
+					of family medicine and primary care 9.9 (2020): 4826-4832. <br>
+					https://journals.lww.com/jfmpc/fulltext/2020/09090/Understanding_the_determinants_of_happiness.58.aspx
+					<br> <br>
+
+					Powdthavee, Nattavudh, Richard V. Burkhauser, and Jan-Emmanuel De Neve. "Top incomes and human<br>
+					well-being: Evidence from the Gallup World Poll." Journal of Economic Psychology 62 (2017): 246-257.
+					<br> <br>
+				</p>
+			</header>
+		</section>
 
 
 
@@ -339,7 +423,7 @@
 					<!-- Copyright -->
 					<div class="copyright">
 						<ul class="menu">
-							<li>&copy; Untitled. All rights reserved.</li>
+							<li>&copy; Noah Cavestany.</li>
 							<li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
 						</ul>
 					</div>
