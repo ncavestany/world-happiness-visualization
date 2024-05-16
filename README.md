@@ -50,10 +50,10 @@ git push origin <NEW_BRANCH_NAME>
 Note, all d3 scripts are already included in the index.html file. However, if one needs to import the scripts themselves then add the following lines to your index.html.
 These scripts include d3, d3-legend, d3-json, d3-geo, and d3-geo-projection.
 ```bash
-	<script src="https://d3js.org/d3.v7.min.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/d3-legend/2.25.6/d3-legend.min.js"></script>
-	<script src="https://d3js.org/topojson.v2.min.js"></script>
-	<script src="https://cdn.jsdelivr.net/npm/d3-geo@3"></script>
-	<script src="https://cdn.jsdelivr.net/npm/d3-geo-projection@4"></script>
+<script src="https://d3js.org/d3.v7.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3-legend/2.25.6/d3-legend.min.js"></script>
+<script src="https://d3js.org/topojson.v2.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/d3-geo@3"></script>
+<script src="https://cdn.jsdelivr.net/npm/d3-geo-projection@4"></script>
 ```
 
