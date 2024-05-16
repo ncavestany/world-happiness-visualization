@@ -48,7 +48,7 @@ git push
 
 
 ## Libraries
-Note, all d3 scripts are already included in the index.html file. However, if one needs to import the scripts themselves then add the following lines to your index.html.
+Note: All d3 scripts are already included in the index.html file. However, if one needs to import the scripts themselves then add the following lines to your index.html.
 These scripts include d3 v7, d3-legend 2.25.6, d3-json v2, d3-geo v3.1.1, and d3-geo-projection v4.0.0.
 ```bash
 <script src="https://d3js.org/d3.v7.min.js"></script>
