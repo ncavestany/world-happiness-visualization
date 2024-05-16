@@ -194,7 +194,10 @@ Promise.all([
                 .attr('class', 'countries')
                 .selectAll('path')
                 .data(
-                    topojson.feature(mapData, mapData.objects.countries).features
+                    topojson.feature(mapData, mapData.objects.countries)
+                        .features.filter(function (d) {
+                            return d.properties.name !== 'Antarctica';
+                        })
                 )
                 .enter()
                 .append('path')
