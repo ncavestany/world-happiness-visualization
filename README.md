@@ -5,6 +5,7 @@
 - [Link](#link)
 - [Features](#features)
 - [Installation](#installation)
+- [Libraries](#libraries)
 
 ## Link
 <a href="[https://github.com/ncavestany/world-happiness-visualization">https://github.com/ncavestany/world-happiness-visualization</a>
@@ -28,9 +29,10 @@
 
 
 ## Installation
-* Clone repository by using the ssh key:
+* First fork the repo by going to <a href="[https://github.com/ncavestany/world-happiness-visualization">https://github.com/ncavestany/world-happiness-visualization</a>
+* Then clone repository by using the ssh key:
 ```bash
-git clone git@github.com:ncavestany/world-happiness-visualization.git
+git clone <YOUR_GITHUB_USERNAME>/world-happiness-visualization.git
 ```
 * Enter the project repository by using:
 ```bash
@@ -39,10 +41,9 @@ cd world-happiness-visualization
 * Then run index.html locally. This can be done using an IDE such as VSCode Live Server.
 * After making any desired changes, create a new branch and commit any changes.
 ```bash
-git checkout -b <NEW_BRANCH_NAME>
 git add <NEW FILES>
 git commit -m "<COMMIT_MESSAGES>"
-git push origin <NEW_BRANCH_NAME>
+git push
 ```
 
 
